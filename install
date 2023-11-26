@@ -1,0 +1,34 @@
+#!/bin/sh
+
+set -e
+
+if [ ! -f /opt/homebrew/bin/brew ]; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+if [ ! -d ~/dotfiles ]; then
+  cd ~
+  git clone git@github.com:mmiyahara/dotfiles.git
+fi
+
+brew bundle -v --file=~/dotfiles/Brewfile
+
+stow -v -d ~/dotfiles/packages -t ~ fish
+# stow -v -d ~/dotfiles/packages -t ~ git
+stow -v -d ~/dotfiles/packages -t ~ karabiner
+stow -v -d ~/dotfiles/packages -t ~ nvim 
+stow -v -d ~/dotfiles/packages -t ~ skhd
+stow -v -d ~/dotfiles/packages -t ~ starship
+stow -v -d ~/dotfiles/packages -t ~ textlint
+stow -v -d ~/dotfiles/packages -t ~ yabai
+
+if [ "$SHELL" != /opt/homebrew/bin/fish ]; then
+  sudo echo /opt/homebrew/bin/fish | tee -a /etc/shells
+  chsh -s /opt/homebrew/bin/fish
+fi
+
+if [ "$SHELL" = /opt/homebrew/bin/fish ]; then
+  fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
+  fish -c "fisher install jethrokuan/fzf"
+  fish -c "fisher install jethrokuan/z"
+fi

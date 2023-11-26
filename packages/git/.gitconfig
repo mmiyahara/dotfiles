@@ -1,0 +1,40 @@
+[includeIf "gitdir:~/dev/github_com/"]
+    path = ~/.gitconfig-com
+
+[includeIf "gitdir:~/dotfiles/"]
+    path = ~/.gitconfig-com
+
+[url "git@github.com:"]
+    InsteadOf = https://github.com/
+
+# [includeIf "gitdir:~/dev/github_dev/"]
+#     path = ~/.gitconfig-dev
+# 
+# [url "git@{fqdn}:"]
+#     InsteadOf = https://{fqdn}/
+
+[core]
+    editor = vim -c \"set fenc=utf-8\"
+    quotepath = false
+
+[alias]
+    # http://oli.jp/2012/git-powerup/
+    # http://blog.blindgaenger.net/advanced_git_aliases.html
+    alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
+    b = branch -a -vv
+    br = browse-remote
+    cm = commit -m
+    co = checkout
+    d = diff
+    dc = diff --cached
+    ds = diff --stat
+    f = fetch --prune
+    fa = fetch --all
+    info = remote show origin
+    l = log --graph -n 20 --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(green)- %an, %cr%Creset'
+    lh = log origin/master..HEAD # display the commits to be pushed
+    ll = log --stat --abbrev-commit
+    ln = log --graph -n 20 --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(green)- %an, %cr%Creset' --name-status
+    lp = log --oneline -n 20 -p
+    s = status --short --branch
+    st = status

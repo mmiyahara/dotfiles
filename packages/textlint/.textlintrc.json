@@ -1,0 +1,19 @@
+{
+  "rules": {
+    "preset-ja-technical-writing": true,
+    "preset-ja-technical-writing": {
+      "no-exclamation-question-mark": false,
+      "ja-no-weak-phrase": false,
+      "ja-no-successive-word": {
+        "allow": [
+          "/[\\u2000-\\u2DFF\\u2E00-\\u33FF\\uF900-\\uFFFD]/"
+        ]
+      }
+    },
+    "preset-ja-spacing": true,
+    "preset-jtf-style": true,
+    "preset-jtf-style": {
+      "1.1.3.箇条書き": false
+    }
+  }
+}
