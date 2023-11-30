@@ -16,7 +16,7 @@ alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
 alt - m : yabai -m window --toggle zoom-fullscreen
 
 # Balance windows
-alt - e : yabai -m space --balance
+alt - b : yabai -m space --balance
 
 # Swap windows
 shift + alt - j : yabai -m window --swap south
